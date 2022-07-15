@@ -1,0 +1,3 @@
+packages:
+  - "packages/@cms-tool/*"
+  - 'packages/*'

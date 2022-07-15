@@ -1,0 +1,23 @@
+{
+  "name": "example-block",
+  "version": "0.1.0",
+  "description": "intro block",
+  "files": [
+    "src/!(style.d.ts)",
+    "build/",
+    "screenshot.png"
+  ],
+  "keywords": [
+    "ice",
+    "react",
+    "block"
+  ],
+  "scripts": {
+    "start": "../../node_modules/.bin/tgcms start",
+    "build": "../../node_modules/.bin/tgcms build"
+  },
+  "dependencies": {
+    "vue": "^3.2.37"
+  },
+  "license": "MIT"
+}

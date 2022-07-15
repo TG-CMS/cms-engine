@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# production
+build/
+dist/
+tmp/
+lib/
+es/
+.happypack
+.DS_Store
+*.swp
+*.dia~
+.cms
+.vscode
+.idea
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+index.module.scss.d.ts
+yarn.lock

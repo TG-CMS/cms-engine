@@ -1,0 +1,23 @@
+{
+  "name": "example-basic-auth",
+  "description": "auth management with icejs",
+  "devDependencies": {
+    "@tgcms/create-cli": "workspace:^1.0.0"
+  },
+  "scripts": {
+    "start": "tgcms start -p 300",
+    "init": "tgcms init test",
+    "build": "tgcms build block",
+    "add": "tgcms add block",
+    "generate": "tgcms generate",
+
+    "test": "tgcms -h"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "dependencies": {
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.1"
+  }
+}

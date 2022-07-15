@@ -1,0 +1,13 @@
+build/
+tests/
+demo/
+.cms/
+coverage/
+**/*-min.js
+**/*.min.js
+package-lock.json
+yarn.lock
+es/
+lib/
+node_modules/
+

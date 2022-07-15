@@ -1,0 +1,23 @@
+{
+  "name": "example-basic-auth",
+  "description": "auth management with icejs",
+  "blocks": [
+    {
+      "type": "block",
+      "description": "intro block",
+      "categories": [],
+      "screenshots": [],
+      "source": {
+        "type": "npm",
+        "npm": "example-block",
+        "version": "0.1.0"
+      },
+      "dependencies": {
+        "vue": "^3.2.37"
+      },
+      "publishTime": "2018-07-02T08:52:20.096Z",
+      "updateTime": "2022-05-01T20:35:21.406Z"
+    }
+  ],
+  "components": []
+}

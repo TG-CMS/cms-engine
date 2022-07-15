@@ -1,0 +1,41 @@
+{
+  "name": "<%= npmName %>",
+  "version": "<%= version %>",
+  "description": "<%= description %>",
+  "files": [
+    "src/!(style.d.ts)",
+    "build/",
+    "screenshot.png"
+  ],
+  "keywords": [
+    "ice",
+    "react",
+    "block"
+  ],
+  "scripts": {
+    "start": "build-scripts start",
+    "build": "build-scripts build",
+    "screenshot": "screenshot -l -s mountNode",
+    "prepublishOnly": "npm run build && npm run screenshot"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.8"
+  },
+  "devDependencies": {
+    "@ice/screenshot": "^0.1.1",
+    "build-plugin-block": "^1.0.0",
+    "build-scripts": "^1.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2"
+  },
+  "config": {
+    "name": "<%= name %>",
+    "category": "<%= category %>"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,16 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/util"},
+    { "path": "packages/@cms-tool/build-postcss-config"},
+    { "path": "packages/@cms-tool/build-babel-config"},
+    { "path": "packages/@cms-tool/vite-service"},
+    { "path": "packages/@cms-tool/generate-app"},
+    { "path": "packages/@cms-tool/build-webpack-config"},
+    { "path": "packages/@cms-tool/build-plugin-compiler"},
+    { "path": "packages/@cms-tool/cli"}
+  ],
+//  "compilerOptions": {
+//    "typeRoots": ["node_modules","./types/*.d.ts"]
+//  }
+}
