@@ -17,4 +17,14 @@ html,body,#app{
   margin: 0;
   padding: 0;
 }
+a{
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
 
+.ant-icon{
+  width: 1em;
+  height: 1em;
+}

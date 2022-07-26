@@ -13,6 +13,7 @@ import start from './start.command';
 import build from './build.command';
 import add from './add.command';
 import generate from './generate.command';
+import sync from './sync.command';
 const packageConfig = fes.readJSONSync(path.join(__dirname, '..', 'package.json'));
 let args;
 let config;
@@ -79,7 +80,7 @@ export  function Command(){
     })
     .action(generate);
   program
-    .command('sync [type]')
+    .command('sync')
     .description('sync materials data to CMS Material Center')
     .allowUnknownOption()
     .option('-e, --env <env>', 'Specify  env, support dev|prod')
@@ -89,9 +90,7 @@ export  function Command(){
       console.log('  $ tgcms sync');
       console.log('  $ tgcms sync --dev');
     })
-    .action(async (type ) => {
-
-    });
+    .action(sync);
 
   program.on('--help',function(){
     console.log('');

@@ -1,6 +1,6 @@
 {
   "name": "cms-engine",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "",
   "type": "commonjs",
   "private": true,
@@ -11,6 +11,7 @@
   "scripts": {
     "watch": "ts-node ./scripts/watch.script.ts",
     "build": "ts-node ./scripts/build.script.ts",
+    "publish": "ts-node ./scripts/publish.script.ts",
     "clean": "rimraf packages/*/lib && rimraf packages/@cms-tool/*/lib",
     "rm": "rimraf packages/**/*/node_modules "
   },

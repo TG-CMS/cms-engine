@@ -5,7 +5,6 @@ import {VietHtmlPlugin} from './plugin';
 import * as path from "path";
 export function viteConfig(context):InlineConfig{
   const {rootDir,commandArgs={}}=context;
-  const tplDir=path.join(__dirname, './public');
   const baseDir=path.join(__dirname);
   const publicDir=path.join(rootDir, './public');
   const server:ServerOptions={

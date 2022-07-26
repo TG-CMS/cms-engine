@@ -5,7 +5,6 @@ import {VietHtmlPlugin} from './plugin';
 import * as path from "path";
 export function buildConfig(context):InlineConfig{
   const {rootDir,commandArgs={}}=context;
-  const tplDir=path.join(__dirname, './public');
   const publicDir=path.join(rootDir, './public');
   const hmr:HmrOptions={
     port: commandArgs.port || 3333,

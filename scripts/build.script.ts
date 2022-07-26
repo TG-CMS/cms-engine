@@ -14,14 +14,14 @@ import { run } from './util';
   const cwd = path.join(__dirname, '../packages');
   const files = glob.sync(fileParten, { cwd, nodir: true });
   // eslint-disable-next-line
-  for (const file of files) {
-    const from = path.join(cwd, file);
-    const to = path.join(cwd, file.replace(/\/src\//, '/lib/'));
-    // eslint-disable-next-line
-    await fs.mkdirp(path.dirname(to));
-    // eslint-disable-next-line
-    await fs.copyFile(from, to);
-  }
+  // for (const file of files) {
+  //   const from = path.join(cwd, file);
+  //   const to = path.join(cwd, file.replace(/\/src\//, '/lib/'));
+  //   // eslint-disable-next-line
+  //   await fs.mkdirp(path.dirname(to));
+  //   // eslint-disable-next-line
+  //   await fs.copyFile(from, to);
+  // }
   await run('npx tsc --build ./tsconfig.json');
 
 })().catch((e) => {

@@ -10,7 +10,4 @@
     { "path": "packages/@cms-tool/build-plugin-compiler"},
     { "path": "packages/@cms-tool/cli"}
   ],
-//  "compilerOptions": {
-//    "typeRoots": ["node_modules","./types/*.d.ts"]
-//  }
 }

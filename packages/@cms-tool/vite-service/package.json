@@ -1,15 +1,16 @@
 {
   "name": "@tgcms/vite-service",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "license": "MIT",
   "main": "lib/index.js",
   "directories": {
     "lib": "lib",
+    "config": "config",
     "test": "__tests__"
   },
   "files": [
     "lib",
-    "bin",
+    "config",
     "!lib/**/*.map"
   ],
   "scripts": {
@@ -27,6 +28,7 @@
     "rollup": "^2.76.0",
     "upath": "^2.0.1",
     "vite": "^2.9.14",
+    "vite-plugin-dts": "^1.4.0",
     "vue": "^3.2.37"
   },
   "peerDependencies": {

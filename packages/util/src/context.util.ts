@@ -49,7 +49,7 @@ export class Context {
       }
     });
     if (!entry){
-      throw new Error('no found entry');
+      return;
     }
     this.entry=path.join(this.sourceDir,entry);
   }

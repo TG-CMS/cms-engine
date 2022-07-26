@@ -44,20 +44,28 @@ export async function npmPublish(npm:string,version='latest'){
   }
   return data.time;
 }
-export async function generateMaterial(pkgPath,materialType){
+export async function generateMaterial(pkgPath,materialType,material){
   const projectPath = path.dirname(pkgPath);
   const pkg = await fse.readJson(pkgPath);
   const {description}=pkg;
   const materialConfig = pkg.config || {};
+  const {unpkgHost=''}=material||{};
   const { name: npmName,registry } = pkg;
   let version = pkg.version;
-  const screenshot=materialConfig.screenshot;
-  const screenshots=[];
-  const homepage = pkg.homepage // ||  `${unpkgHost}/${npmName}@${version}/build/index.html`;
+
+  const screenshot = materialConfig.screenshot
+    || materialConfig.snapshot
+    || (fse.existsSync(path.join(projectPath, 'screenshot.png')) && `${unpkgHost}/${npmName}@${version}/screenshot.png`)
+    || (fse.existsSync(path.join(projectPath, 'screenshot.jpg')) && `${unpkgHost}/${npmName}@${version}/screenshot.jpg`)
+    || `${unpkgHost}/${npmName}@${version}/screenshot.png`;
+
+  const screenshots = materialConfig.screenshots || (screenshot && [screenshot]);
+  const homepage = pkg.homepage  ||  `${unpkgHost}/${npmName}@${version}/demo/index.html`;
   const { category, } = materialConfig;
   const {created: publishTime, modified: updateTime }=await npmPublish(npmName);
-  const categories=[];
-  const material={
+  const categories=category?[].concat(Array.isArray(category)?category:[category]):[];
+
+  const item={
     type:materialType,
     homepage,
     description,
@@ -77,8 +85,9 @@ export async function generateMaterial(pkgPath,materialType){
     publishTime,
     updateTime,
   }
-  return material;
+  return item;
 }
+
 export default async function (options){
   const context=new Context({
     command:'generate',
@@ -104,7 +113,7 @@ export default async function (options){
     materialsData = await BluebirdPromise.map(
       allMaterials,
       (materialItem) => {
-        return generateMaterial(materialItem.pkgPath, materialItem.materialType).then((data) => {
+        return generateMaterial(materialItem.pkgPath, materialItem.materialType,materialConfig).then((data) => {
           index += 1;
           spinner.text = `generate materials data progress: ${index}/${total}`;
           return data;

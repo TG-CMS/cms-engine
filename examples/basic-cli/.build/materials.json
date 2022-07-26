@@ -4,9 +4,12 @@
   "blocks": [
     {
       "type": "block",
+      "homepage": "/example-block@0.1.0/demo/index.html",
       "description": "intro block",
       "categories": [],
-      "screenshots": [],
+      "screenshots": [
+        "/example-block@0.1.0/screenshot.png"
+      ],
       "source": {
         "type": "npm",
         "npm": "example-block",

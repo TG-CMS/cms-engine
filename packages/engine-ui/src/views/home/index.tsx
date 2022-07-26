@@ -1,5 +1,5 @@
 import {defineComponent} from 'vue';
-import { Input } from 'ant-design-vue'
+import { Input } from 'ant-design-vue';
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/vue';
 const { SchemaField } = createSchemaField({

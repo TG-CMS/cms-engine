@@ -5,7 +5,7 @@
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@/views": ["src/views/*"]
+      "@/*": ["src/*"],
     }
   },
   "include": ["vite.config.ts"]

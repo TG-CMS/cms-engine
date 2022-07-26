@@ -61,6 +61,9 @@ export default defineComponent({
      <div class={styles.publicWrap}>
        <div class={styles.publicContent}>
          <div class={styles.publicForm}>
+           <div class={styles.loginSwitcher}>
+             <img src="https://img.alicdn.com/imgextra/i1/O1CN01a2J40d1HtlqT5oBD8_!!6000000000816-2-tps-204-204.png" />
+           </div>
            <div class={styles.publicLogo}>
               <img src="https://vitejs.dev/logo-with-shadow.png" alt=""/>
               <h2>登录TG</h2>
@@ -79,6 +82,15 @@ export default defineComponent({
              </Form>
 
            </FormProvider>
+         </div>
+       </div>
+       <div class={styles.loginBar}>
+         <div class={styles.loginBarCopyright}>
+           © 2021-2022 TG公司 版权所有
+         </div>
+         <div class={styles.loginBarPrivacy}>
+           <span>服务协议</span>
+           <span>法律声明</span>
          </div>
        </div>
      </div>
