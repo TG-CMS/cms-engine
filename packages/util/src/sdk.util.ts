@@ -2,23 +2,34 @@ import * as chalk from 'chalk';
 import * as ora from 'ora';
 import * as _ from 'lodash';
 import {log} from './log.util'
-import axios, { AxiosRequestConfig,AxiosInstance } from 'axios';
+import *  as fse  from 'fs-extra'
+import axios, { AxiosInstance } from 'axios';
+import {ClientOptions,Client} from 'minio';
 import {error} from "npmlog";
 interface Sdk{
   host:string
-  token?:string
+  token?:string;
+  minio?:ClientOptions;
+  bucket?:string
 }
 export class TgSdk{
   private host: string;
   private token:string;
   private request:AxiosInstance
+  private minio:Client;
+  private options:Sdk;
   constructor(options:Sdk) {
-    const {host,token}=options||{}
+
+    const {host,token,minio}=options||{}
+    this.options=options;
     this.host=host;
     this.token=token;
     const headers={};
     if (token){
       headers['token']=token
+    };
+    if (minio){
+      this.minio=new Client(minio);
     }
     this.request=axios.create({
       baseURL:host,
@@ -94,11 +105,22 @@ export class TgSdk{
         if (item.message){
           log.error('TGSDK:', `物料 ${item.widget.name} 上传失败, 原因: ${item.message}`)
         }
+
       });
     }catch (e) {
       console.log();
       log.error('error',e.message);
       throw  e;
     }
+ }
+ public async uploadAssets(assets:{fileName,filePath}[]){
+   const {bucket='tgcms-oss-prod-space'}=this.options;
+   const isExist=await this.minio.bucketExists(bucket);
+   if (!isExist){
+     await this.minio.makeBucket(bucket,'us-east-1');
+   };
+   await Promise.all(assets.map(({fileName,filePath})=>{
+     return  this.minio.putObject(bucket,fileName, fse.readFileSync(filePath))
+   }));
  }
 }

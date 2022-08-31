@@ -4,7 +4,24 @@ import * as fse from 'fs-extra';
 import * as chalk from 'chalk';
 import * as BluebirdPromise from 'bluebird';
 import {Context,log,getNpmInfo,spinner as ora, DB_MATERIALS} from '@tgcms/util';
-
+export function globFiles(rootDir,basePath){
+  return new Promise((resolve, reject) => {
+    glob(
+      `dist/*`,
+      {
+        cwd: rootDir,
+        nodir: true,
+      },
+      (err, files=[]) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(files.map((item)=>`${basePath}/${item}`).join(','));
+        }
+      },
+    );
+  });
+};
 export function globMaterials(rootDir,materialType){
   return new Promise((resolve, reject) => {
     glob(
@@ -55,16 +72,16 @@ export async function generateMaterial(pkgPath,materialType,material){
 
   const screenshot = materialConfig.screenshot
     || materialConfig.snapshot
-    || (fse.existsSync(path.join(projectPath, 'screenshot.png')) && `${unpkgHost}/${npmName}@${version}/screenshot.png`)
-    || (fse.existsSync(path.join(projectPath, 'screenshot.jpg')) && `${unpkgHost}/${npmName}@${version}/screenshot.jpg`)
-    || `${unpkgHost}/${npmName}@${version}/screenshot.png`;
+    || (fse.existsSync(path.join(projectPath, 'screenshot.png')) && `${unpkgHost}/${npmName}/${version}/screenshot.png`)
+    || (fse.existsSync(path.join(projectPath, 'screenshot.jpg')) && `${unpkgHost}/${npmName}/${version}/screenshot.jpg`)
+    || `${unpkgHost}/${npmName}/${version}/screenshot.png`;
 
   const screenshots = materialConfig.screenshots || (screenshot && [screenshot]);
-  const homepage = pkg.homepage  ||  `${unpkgHost}/${npmName}@${version}/demo/index.html`;
+  const homepage = pkg.homepage  ||  `${unpkgHost}/${npmName}/${version}/demo/index.html`;
   const { category, } = materialConfig;
   const {created: publishTime, modified: updateTime }=await npmPublish(npmName);
   const categories=category?[].concat(Array.isArray(category)?category:[category]):[];
-
+  const  assets=await globFiles(projectPath,`/${npmName}/${version}`);
   const item={
     type:materialType,
     homepage,
@@ -74,6 +91,7 @@ export async function generateMaterial(pkgPath,materialType,material){
     title: materialConfig.title,
     categories,
     screenshots,
+    assets,
     source: {
       type: 'npm',
       npm: npmName,

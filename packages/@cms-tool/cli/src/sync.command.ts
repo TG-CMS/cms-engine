@@ -2,11 +2,12 @@ import {Context, DB_MATERIALS,log,TgSdk} from "@tgcms/util";
 import * as fse from 'fs-extra';
 import * as path from "path";
 
-export default async function (options){
+export default async function (type,options){
   const context=new Context({
     command:'generate',
     commandArgs:options,
   });
+  const {host}=options||{}
   await context.loadPackage();
   const distFilepath = path.join(context.rootDir, DB_MATERIALS);
   const isGenerate=await fse.pathExists(DB_MATERIALS);
@@ -16,7 +17,7 @@ export default async function (options){
   }
   const data = await fse.readJson(distFilepath);
   const cmsSdk=new TgSdk({
-    host:'http://127.0.0.1:3000',
+    host:host||'http://127.0.0.1:3000',
   });
   try {
     console.log();

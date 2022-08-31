@@ -4,12 +4,13 @@
   "blocks": [
     {
       "type": "block",
-      "homepage": "/example-block@0.1.0/demo/index.html",
+      "homepage": "/example-block/0.1.0/demo/index.html",
       "description": "intro block",
       "categories": [],
       "screenshots": [
-        "/example-block@0.1.0/screenshot.png"
+        "/example-block/0.1.0/screenshot.png"
       ],
+      "assets": "/example-block/0.1.0/dist/index.d.ts,/example-block/0.1.0/dist/index.esm.js,/example-block/0.1.0/dist/index.umd.js,/example-block/0.1.0/dist/index.umd.min.js,/example-block/0.1.0/dist/style.d.ts",
       "source": {
         "type": "npm",
         "npm": "example-block",

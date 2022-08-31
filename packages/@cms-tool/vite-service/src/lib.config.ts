@@ -6,14 +6,14 @@ import {Context} from '@tgcms/util';
 import * as path from 'path';
 export function libConfig(context:Context,{minify=false}):InlineConfig{
   const {rootDir,entry,componentName}=context;
-  const esDir=path.join(rootDir,'es');
-  const umdDir=path.join(rootDir,'dist');
+  // const esDir=path.join(rootDir,'es');
+  const dir=path.join(rootDir,'dist');
   const  output:any[]= [
     {
       format: 'umd',
-      entryFileNames:  `[name]${minify?'.min':''}.js`,
+      entryFileNames:  `[name].umd${minify?'.min':''}.js`,
       preserveModules: false,
-      dir: umdDir,
+      dir,
       preserveModulesRoot: 'src',
       globals: {
         vue: 'Vue'
@@ -24,9 +24,10 @@ export function libConfig(context:Context,{minify=false}):InlineConfig{
  if (!minify){
    output.push({
      format: 'es',
-     entryFileNames:  `[name]${minify?'.min':''}.js`,
+     entryFileNames:  `[name].esm${minify?'.min':''}.js`,
      preserveModules: true,
-     dir: esDir,
+     dir,
+     exports:'auto',
      preserveModulesRoot: 'src'
    },)
  }
@@ -37,7 +38,7 @@ export function libConfig(context:Context,{minify=false}):InlineConfig{
  if (!minify){
    plugins.push(dts(
      {
-       outputDir:['es','dist'],
+       outputDir:['dist'],
        tsConfigFilePath:path.join(__dirname,'../config/tsconfig.json')
      }
    ),)

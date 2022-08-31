@@ -3,7 +3,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   setup(){
     return ()=>(
-      <div >
+      <div>
         hello word2222
       </div>
     )

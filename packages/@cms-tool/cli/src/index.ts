@@ -80,10 +80,11 @@ export  function Command(){
     })
     .action(generate);
   program
-    .command('sync')
+    .command('sync [type]')
     .description('sync materials data to CMS Material Center')
     .allowUnknownOption()
     .option('-e, --env <env>', 'Specify  env, support dev|prod')
+    .option('-h, --host <host>', 'Specify  env, support dev|prod')
     .on('--help', () => {
       console.log('');
       console.log('Examples:');
